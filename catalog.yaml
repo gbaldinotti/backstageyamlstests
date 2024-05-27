@@ -1,12 +1,13 @@
 apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
-  name: sign-manager-apiv2
+  name: sign-manager-api
   description: Sign Manager API
   tags:
     - sign-manager-api
-    - typescript
 spec:
   type: service
-  lifecycle: production
-  owner: core
+  lifecycle: experimental
+  owner: team-a
+  dependsOn: ['resource:artists-db']
+  apiConsumedBy: ['component:www-artist']
