@@ -1,7 +1,7 @@
 apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
-  name: Proccess Graph API
+  name: process-graph-api
   description: https://github.com/nextgovbr/process-graph-api
   annotations:
     backstage.io/source-template: template:default/react-ssr-template
