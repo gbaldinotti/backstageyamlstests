@@ -5,7 +5,7 @@ kind: System
 metadata:
   name: backoffice
 spec:
-  owner: SRE
+  owner: admin
   ---
 # https://backstage.io/docs/features/software-catalog/descriptor-format#kind-component
 apiVersion: backstage.io/v1alpha1
@@ -15,7 +15,7 @@ metadata:
 spec:
   type: website
   lifecycle: production
-  owner: SRE
+  owner: admin
   system: backoffice
   providesApis: [bucket-manager,user-manager]
 ---
@@ -27,7 +27,7 @@ metadata:
 spec:
   type: grpc
   lifecycle: experimental
-  owner: SRE
+  owner: admin
   system: backoffice
   definition: |
     syntax = "proto3";
