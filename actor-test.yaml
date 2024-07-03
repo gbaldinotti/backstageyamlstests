@@ -1,0 +1,178 @@
+openapi: 3.0.0
+info:
+  title: Actor API
+  description: Gerenciamento dos atores do AD
+  version: 0.1.0
+paths:
+  /metrics:
+    get:
+      responses:
+        '200':
+          description: Default Response
+  /actor-api/health:
+    get:
+      responses:
+        '200':
+          description: Default Response
+  /actor-api/user/v1/listUsers:
+    get:
+      parameters:
+        - name: page
+          in: query
+          required: true
+          schema:
+            type: number
+          description: Número da página para paginação
+        - name: pageSize
+          in: query
+          required: true
+          schema:
+            type: number
+          description: Tamanho da página para paginação
+        - name: internalUser
+          in: query
+          required: false
+          schema:
+            type: boolean
+          description: Indicação de usuário interno
+        - name: cityId
+          in: query
+          required: true
+          schema:
+            type: number
+          description: Número da cidade
+        - name: globalSearch
+          in: query
+          required: false
+          schema:
+            type: string
+          description: Texto para busca no nome ou email
+        - name: x-api-key
+          in: header
+          required: false
+          schema:
+            type: string
+          description: Chave de API
+      responses:
+        '200':
+          description: Default Response
+  /actor-api/actor:
+    get:
+      parameters:
+        - name: externalId
+          in: query
+          required: false
+          schema:
+            type: string
+          description: ID externo do ator
+        - name: actorId
+          in: query
+          required: false
+          schema:
+            type: string
+          description: ID do ator
+      description: Busca ator pelo actorId ou externalId informado
+      responses:
+        '200':
+          description: Default Response
+    post:
+      description: Sincroniza actorId de acordo com o usuário ou setor informado
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                externalId:
+                  type: string
+                actorType:
+                  type: string
+      responses:
+        '200':
+          description: Default Response
+  /actor-api/etl/list:
+    get:
+      parameters:
+        - name: page
+          in: query
+          required: true
+          schema:
+            type: number
+          description: Número da página para paginação
+        - name: pageSize
+          in: query
+          required: true
+          schema:
+            type: number
+          description: Tamanho da página para paginação
+        - name: organizationId
+          in: query
+          required: true
+          schema:
+            type: number
+          description: Identificação da cidade ou organização
+        - name: textSearch
+          in: query
+          required: false
+          schema:
+            type: string
+          description: Texto para busca por atributos na etl.
+      responses:
+        '200':
+          description: Default Response
+  /actor-api/etl/list/tree:
+    get:
+      parameters:
+        - name: page
+          in: query
+          required: true
+          schema:
+            type: number
+          description: Número da página para paginação
+        - name: pageSize
+          in: query
+          required: true
+          schema:
+            type: number
+          description: Tamanho da página para paginação
+        - name: organizationId
+          in: query
+          required: true
+          schema:
+            type: number
+          description: Identificação da cidade ou organização
+        - name: textSearch
+          in: query
+          required: false
+          schema:
+            type: string
+          description: Texto para busca por atributos na etl.
+        - name: filterBy
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - all
+              - sectors
+              - users
+          description: Filtrar por tipo de actor
+        - name: favorites
+          in: query
+          required: false
+          schema:
+            type: array
+            items:
+              type: string
+          description: Lista de favoritos, passando a identificação correspondente ao id do usuer ou a tag do setor separados por ','
+      responses:
+        '200':
+          description: Default Response
+components:
+  schemas: {}
+  securitySchemes: {}
+consumes:
+  - application/json
+produces:
+  - application/json
